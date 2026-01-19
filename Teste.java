@@ -1,24 +1,47 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Teste {
-public static void main(String[] airgs) { 
-    Scanner leitor = new Scanner(System.in);
+// Modelo do dado (fora da classe principal)
+class Item {
+    String nome;
+    int qtd;
 
-    System.out.println("Qual o seu nome rapariga ? ");
-    String nome = leitor.nextLine();
-    
-    System.out.println("Quantos anos voce tem ? ");
-    int idade = leitor.nextInt();
-
-    System.out.println("Quantos custa um Cafe na sua cidade ? ");
-    Double precoCafe = leitor.nextDouble();
-
-    System.out.println("\n--- RELATORIO DO " + nome.toUpperCase() + " ---");
-    System.out.println("idade " + idade + " anos");
-    System.out.println("Preco do cafe: R$ " + precoCafe);
-
-    leitor.close();
-
+    Item(String n, int q) {
+        this.nome = n;
+        this.qtd = q;
+    }
 }
-    
-} 
+
+// Classe principal (tem que ser Teste porque o arquivo é Teste.java)
+public class Teste {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Item> lista = new ArrayList<>();
+
+        System.out.println("--- SISTEMA DE COMPRAS ---");
+        System.out.print("Quantos produtos quer cadastrar? ");
+        
+        // Evita erro se o usuario nao digitar numero
+        int total = scan.nextInt();
+
+        for (int i = 0; i < total; i++) {
+            System.out.println("\nProduto " + (i + 1));
+            System.out.print("Nome: ");
+            String nomeDigitado = scan.next();
+
+            System.out.print("Quantidade: ");
+            int qtdDigitada = scan.nextInt();
+
+            // Adiciona o novo objeto na lista
+            lista.add(new Item(nomeDigitado, qtdDigitada));
+        }
+
+        System.out.println("\n--- RELATORIO DE ESTOQUE ---");
+        for (Item it : lista) {
+            System.out.println("Item: " + it.nome + " | Qtd: " + it.qtd);
+        }
+
+        System.out.println("\nFim do programa.");
+        scan.close();
+    }
+}
