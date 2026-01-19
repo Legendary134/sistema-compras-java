@@ -42,6 +42,29 @@ public class Teste {
         }
 
         System.out.println("\nFim do programa.");
+
+         // Bloco para remover um item
+        System.out.println("\nDeseja remover algum item? (1 para sim / 0 para nao)");
+        int opcao = scan.nextInt();
+
+        if (opcao == 1) {
+            System.out.print("Digite o indice (0, 1, 2...) do item: ");
+            int id = scan.nextInt();
+
+            if (id < lista.size()) {
+                lista.remove(id);
+                System.out.println("Item removido com sucesso!");
+            } else {
+                System.out.println("Indice invalido!");
+            }
+        }
+
+        // Mostra a lista final atualizada
+        System.out.println("\n--- LISTA FINAL ATUALIZADA ---");
+        for (Item it : lista) {
+            System.out.println("Item: " + it.nome + " | Qtd: " + it.qtd);
+        }
+
         scan.close();
     }
 }
